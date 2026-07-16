@@ -230,7 +230,10 @@
 
 <script>
   window.addEventListener('load', function () {
-    if (!location.hash) { window.scrollTo(0, 0); }
+    window.scrollTo(0, 0);
+    if (location.hash) {
+      history.replaceState(null, '', location.pathname + location.search);
+    }
   });
 </script>
 </body>
