@@ -9,6 +9,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<script>
+  if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+</script>
 </head>
 <body>
 
@@ -225,5 +228,10 @@
   </div>
 </footer>
 
+<script>
+  window.addEventListener('load', function () {
+    if (!location.hash) { window.scrollTo(0, 0); }
+  });
+</script>
 </body>
 </html>

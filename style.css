@@ -28,6 +28,7 @@ body{
   line-height:1.8;
   word-break:keep-all;
   overflow-wrap:break-word;
+  overflow-anchor:none;
   -webkit-font-smoothing:antialiased;
 }
 
@@ -67,7 +68,7 @@ header{padding:90px 0;border-bottom:1px solid var(--line);}
 }
 
 .photo-frame img{
-  display:block;width:100%;height:auto;
+  display:block;width:100%;height:auto;aspect-ratio:1122/1402;object-fit:cover;
 }
 
 .hero-text{flex:1;min-width:0;}
