@@ -215,9 +215,29 @@
   </div>
 </section>
 
+<section id="gallery">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">06</span><h2>갤러리</h2></div>
+    <div class="slider" id="slider">
+      <div class="slider-track">
+        <div class="slide"><img src="images/01.png" alt="슬라이드 1"></div>
+        <div class="slide"><img src="images/02.png" alt="슬라이드 2"></div>
+        <div class="slide"><img src="images/03.png" alt="슬라이드 3"></div>
+      </div>
+      <button type="button" class="slider-btn prev" aria-label="이전 슬라이드">&#8249;</button>
+      <button type="button" class="slider-btn next" aria-label="다음 슬라이드">&#8250;</button>
+      <div class="slider-dots">
+        <button type="button" class="dot active" data-index="0" aria-label="1번 슬라이드로 이동"></button>
+        <button type="button" class="dot" data-index="1" aria-label="2번 슬라이드로 이동"></button>
+        <button type="button" class="dot" data-index="2" aria-label="3번 슬라이드로 이동"></button>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="contact">
   <div class="wrap">
-    <div class="sec-head"><span class="sec-num">06</span><h2>Contact</h2></div>
+    <div class="sec-head"><span class="sec-num">07</span><h2>Contact</h2></div>
     <ul class="contact-list">
       <li><span class="contact-label">Email</span><a href="mailto:hanwool5000@hanmail.net">hanwool5000@hanmail.net</a></li>
       <li><span class="contact-label">Smart Store</span><a href="https://smartstore.naver.com/deli-hanwool" target="_blank" rel="noopener">smartstore.naver.com/deli-hanwool</a></li>
@@ -238,6 +258,42 @@
   window.addEventListener('load', function () {
     window.scrollTo(0, 0);
   });
+</script>
+
+<script>
+(function () {
+  var slider = document.getElementById('slider');
+  if (!slider) return;
+
+  var track = slider.querySelector('.slider-track');
+  var slides = slider.querySelectorAll('.slide');
+  var dots = slider.querySelectorAll('.dot');
+  var index = 0;
+  var timer;
+
+  function go(i) {
+    index = (i + slides.length) % slides.length;
+    track.style.transform = 'translateX(-' + (index * 100) + '%)';
+    dots.forEach(function (dot, di) {
+      dot.classList.toggle('active', di === index);
+    });
+  }
+
+  function startAutoplay() {
+    timer = setInterval(function () { go(index + 1); }, 5000);
+  }
+
+  slider.querySelector('.slider-btn.prev').addEventListener('click', function () { go(index - 1); });
+  slider.querySelector('.slider-btn.next').addEventListener('click', function () { go(index + 1); });
+  dots.forEach(function (dot) {
+    dot.addEventListener('click', function () { go(parseInt(dot.dataset.index, 10)); });
+  });
+
+  slider.addEventListener('mouseenter', function () { clearInterval(timer); });
+  slider.addEventListener('mouseleave', startAutoplay);
+
+  startAutoplay();
+})();
 </script>
 </body>
 </html>
